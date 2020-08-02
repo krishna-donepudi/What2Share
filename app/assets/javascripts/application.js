@@ -14,3 +14,6 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+// @import "materialize";
+// @import "https://fonts.googleapis.com/icon?family=Material+Icons";
