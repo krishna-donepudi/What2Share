@@ -3,12 +3,13 @@ class User < ApplicationRecord
   has_one :partner, :class_name => 'User', :foreign_key => 'partner_id'
   belongs_to :partner, :class_name => 'User', optional: true
   has_many :user_apps
-  has_many :apps, through: :user_apps 
+  has_many :apps, through: :user_apps
 
   # validations
   validates :username, presence: true, uniqueness: { case_sensitive: false }
 
   scope :alphabetical, -> { order('username') }
+  scope :singles, -> { where('partner_id IS NULL') }
 
   # callbacks
   # before_save :add_partner_if_not_added

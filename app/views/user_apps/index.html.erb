@@ -14,8 +14,8 @@
   <tbody>
     <% @user_apps.each do |user_app| %>
       <tr>
-        <td><%= user_app.user %></td>
-        <td><%= user_app.app %></td>
+        <td><%= user_app.user.username %></td>
+        <td><%= user_app.app.name %></td>
         <td><%= link_to 'Show', user_app %></td>
         <td><%= link_to 'Edit', edit_user_app_path(user_app) %></td>
         <td><%= link_to 'Destroy', user_app, method: :delete, data: { confirm: 'Are you sure?' } %></td>

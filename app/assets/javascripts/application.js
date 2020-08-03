@@ -10,10 +10,18 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require materialize
+//= require materialize-sprockets
+//= require materialize-form
 //= require_tree .
 
 // @import "materialize";
 // @import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+$(document).ready(function () {
+    $('select').formSelect();
+});

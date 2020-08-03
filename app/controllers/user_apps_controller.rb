@@ -15,17 +15,20 @@ class UserAppsController < ApplicationController
   # GET /user_apps/new
   def new
     @user_app = UserApp.new
+    @users = User.alphabetical.map{|x| [x.username, x.id]}
+    @apps = App.alphabetical.map{|x| [x.name, x.id]}
   end
 
   # GET /user_apps/1/edit
   def edit
+    @users = User.alphabetical.map{|x| [x.username, x.id]}
+    @apps = App.alphabetical.map{|x| [x.name, x.id]}
   end
 
   # POST /user_apps
   # POST /user_apps.json
   def create
     @user_app = UserApp.new(user_app_params)
-
     respond_to do |format|
       if @user_app.save
         format.html { redirect_to @user_app, notice: 'User app was successfully created.' }
