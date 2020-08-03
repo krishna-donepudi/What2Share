@@ -8,6 +8,8 @@ class User < ApplicationRecord
   # validations
   validates :username, presence: true, uniqueness: { case_sensitive: false }
 
+  scope :alphabetical, -> { order('username') }
+
   # callbacks
   # before_save :add_partner_if_not_added
 

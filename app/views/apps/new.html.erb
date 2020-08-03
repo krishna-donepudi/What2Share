@@ -1,5 +1,3 @@
-<h1>New App</h1>
-
-<%= render 'form', app: @app %>
-
-<%= link_to 'Back', apps_path %>
+<%= render partial: "partials/form_structure", locals: {object: @app, 
+                                                        type_of_form: "New App",
+                                                        fields: "fields"} %>
