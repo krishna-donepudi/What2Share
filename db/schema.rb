@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_02_063252) do
+ActiveRecord::Schema.define(version: 2020_08_11_160832) do
 
   create_table "apps", force: :cascade do |t|
     t.string "name"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 2020_08_02_063252) do
     t.integer "app_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "will_to_share"
+    t.boolean "currently_sharing"
     t.index ["app_id"], name: "index_user_apps_on_app_id"
     t.index ["user_id"], name: "index_user_apps_on_user_id"
   end
