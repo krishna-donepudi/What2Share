@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+
+  has_secure_password
+
   # relations
   has_one :partner, :class_name => 'User', :foreign_key => 'partner_id'
   belongs_to :partner, :class_name => 'User', optional: true
@@ -10,6 +13,12 @@ class User < ApplicationRecord
 
   scope :alphabetical, -> { order('username') }
   scope :singles, -> { where('partner_id IS NULL') }
+
+  ROLES_LIST = ['admin', 'non-admin'].freeze
+
+  def self.authenticate(username, password)
+    find_by_username(username).try(:authenticate, password)
+  end
 
   # callbacks
   # before_save :add_partner_if_not_added

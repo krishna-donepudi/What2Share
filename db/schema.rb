@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_11_160832) do
+ActiveRecord::Schema.define(version: 2020_08_12_101515) do
 
   create_table "apps", force: :cascade do |t|
     t.string "name"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 2020_08_11_160832) do
     t.integer "partner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.string "role"
     t.index ["partner_id"], name: "index_users_on_partner_id"
   end
 

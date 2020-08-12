@@ -72,6 +72,6 @@ class UserAppsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_app_params
-      params.require(:user_app).permit(:user_id, :app_id)
+      params.require(:user_app).permit(:user_id, :app_id, :will_to_share, :currently_sharing)
     end
 end

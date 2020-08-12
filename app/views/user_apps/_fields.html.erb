@@ -1,2 +1,4 @@
 <%= f.input :user_id, collection: @users %>
 <%= f.input :app_id, collection: @apps %>
+<%= f.input :will_to_share, collection: UserApp::WILL_TO_SHARE_OPTIONS %>
+<%= f.input :currently_sharing %>

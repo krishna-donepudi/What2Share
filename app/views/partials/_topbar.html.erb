@@ -1,5 +1,13 @@
 <div class="row valign-wrapper" id="topbar">
-    <div class="col">
-        <%= link_to image_tag("logo.png"), home_path %>
+    <div class="col s10">
+        <%= link_to image_tag("logo.png"), login_path %>
+    </div>
+    <div class="col s2">
+        <ul class='right'>
+            <% unless current_user.nil? %>
+                <li><%= link_to 'My Account', user_path(current_user) %></li>
+                <li><%= link_to 'Logout', logout_path %></li>
+            <% end %>
+        </ul>
     </div>
 </div>
