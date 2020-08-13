@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'users/:id/edit_apps', to: 'users#edit_apps', as: :edit_apps
+
+  get 'users/:id/edit_user_apps_1', to: 'users#edit_user_apps_1', as: :edit_user_apps_1
+
+  get 'users/:id/edit_user_apps_2', to: 'users#edit_user_apps_2', as: :edit_user_apps_2
+
   resources :user_apps
   resources :apps
   resources :users
@@ -10,9 +16,6 @@ Rails.application.routes.draw do
   get 'signup' => 'users#new', :as => :signup
   get 'login' => 'sessions#new', :as => :login
   get 'logout' => 'sessions#destroy', :as => :logout
-
-  get 'users/:id/edit_apps', to: 'users#edit_apps'
-  patch 'users/:id/edit_apps', to: 'users#update_apps'
   
   root 'home#index' 
 end

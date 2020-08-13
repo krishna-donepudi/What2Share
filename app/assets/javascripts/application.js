@@ -18,8 +18,6 @@
 //= require materialize-sprockets
 //= require materialize-form
 //= require_tree .
-//= require cocoon
-//= require vanilla_nested
 
 // @import "materialize";
 // @import "https://fonts.googleapis.com/icon?family=Material+Icons";

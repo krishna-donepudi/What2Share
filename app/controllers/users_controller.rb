@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_apps, :update_apps]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_apps, 
+                          :update_apps, :edit_user_apps_1, :edit_user_apps_2]
   before_action :check_login
 
   # GET /users
@@ -28,25 +29,12 @@ class UsersController < ApplicationController
     10.times { @user.apps.build }
   end
 
-  def update_apps
-    not_existing = []
-    existing = []
-    apps = user_params['apps_attributes']
-    apps.values.each do |app|
-      if (App.exists? name: app.name).nil?
-        not_existing << app
-      else
-        existing << app
-      end
-    end
-    not_existing.values.each do |app|
-      created_app = App.create(name: app[:name])
-      existing << created_app
-    end
-    existing.values.each do |app|
-      UserApp.create(user_id: @current_user.id, app_id: app.id)
-    end
-    redirect_to apps
+  def edit_user_apps_1
+    @part_one = true
+  end
+
+  def edit_user_apps_2
+    @part_two = true
   end
 
   # POST /users
@@ -69,8 +57,15 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     apps = user_params['apps_attributes']
-    if apps.empty?
-      if @user.update_attributes(user_params)
+    if apps.nil? || apps.empty?
+      p @part_one, @part_two
+      if @part_one
+        p "hemlo 11231231e12"
+        redirect_to edit_user_apps_2_path
+      elsif @part_two
+        p "hemlo"
+        redirect_to user_apps_path
+      elsif @user.update_attributes(user_params)
         redirect_to user_path, notice: "Updated user information."
       else
         render action: 'edit'
@@ -85,9 +80,9 @@ class UsersController < ApplicationController
         end
       end
       existing.each do |app|
-        UserApp.find_or_create_by(user_id: @current_user.id, app_id: app.id)
+        UserApp.find_or_create_by(user_id: @user.id, app_id: app.id)
       end
-      redirect_to user_apps_path
+      redirect_to edit_user_apps_1_path
     end
   end
 
@@ -109,6 +104,8 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:username, :partner_id, :role, :password, :password_confirmation, apps_attributes: [:id, :name])
+      params.require(:user).permit(:username, :partner_id, :role, 
+        :password, :password_confirmation, apps_attributes: [:id, :name],
+        user_apps_attributes: [:id, :will_to_share, :currently_sharing])
     end
 end
