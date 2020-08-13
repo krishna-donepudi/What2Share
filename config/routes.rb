@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new', :as => :login
   get 'logout' => 'sessions#destroy', :as => :logout
 
+  get 'users/:id/edit_apps', to: 'users#edit_apps'
+  patch 'users/:id/edit_apps', to: 'users#update_apps'
   
   root 'home#index' 
 end

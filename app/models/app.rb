@@ -6,6 +6,8 @@ class App < ApplicationRecord
   # callbacks
   before_save :format_name
 
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
+
   #scopes
   scope :alphabetical, -> { order('name') }
 

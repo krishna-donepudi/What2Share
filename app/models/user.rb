@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :user_apps
   has_many :apps, through: :user_apps
 
+  accepts_nested_attributes_for :apps
+  
   # validations
   validates :username, presence: true, uniqueness: { case_sensitive: false }
 

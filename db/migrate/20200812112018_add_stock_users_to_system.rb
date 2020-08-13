@@ -6,6 +6,10 @@ class AddStockUsersToSystem < ActiveRecord::Migration[5.2]
     bobama.password_confirmation = "secret"
     bobama.role = "user"
     bobama.save
+    netflix = App.new
+    netflix.name = 'netflix'
+    netflix.save
+    bobama.apps << netflix
     mobama = User.new
     mobama.username = 'mobama'
     mobama.password = "secret"
