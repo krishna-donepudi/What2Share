@@ -26,19 +26,6 @@ class UsersController < ApplicationController
     @partners = User.alphabetical.map{|x| [x.username, x.id] }
   end
 
-  def edit_apps
-    n = 10 - @user.user_apps.length
-    n.times { @user.apps.build }
-  end
-
-  def edit_user_apps_1
-    @part_one = true
-  end
-
-  def edit_user_apps_2
-    @part_two = true
-  end
-
   # POST /users
   # POST /users.json
   def create
@@ -65,6 +52,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit_apps
+    n = 10 - @user.user_apps.length
+    n.times { @user.apps.build }
+  end
   
   def update_uapps
     apps = user_params['apps_attributes']
@@ -82,12 +73,18 @@ class UsersController < ApplicationController
     redirect_to edit_user_apps_1_path
   end
 
+  def edit_user_apps_1
+  end
+
   def update_uapps_1
     if @user.update_attributes(user_params)
       redirect_to edit_user_apps_2_path
     else
       redirect_to edit_user_apps_1
     end
+  end
+
+  def edit_user_apps_2
   end
 
   def update_uapps_2
