@@ -1,3 +1,5 @@
-<%= render partial: "partials/form_structure", locals: {object: @user, 
-                                                        type_of_form: "List 20 Apps you use most often",
-                                                        fields: "apps_fields"} %>
+<%= render partial: "partials/form_structure_2", 
+    locals: {object: @user, 
+    method_url: update_uapps_path,
+    type_of_form: "List 20 Apps you use most often",
+    fields: "apps_fields"} %>

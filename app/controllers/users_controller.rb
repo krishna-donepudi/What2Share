@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_apps, 
-                          :update_apps, :edit_user_apps_1, :edit_user_apps_2]
+                          :update_uapps, :edit_user_apps_1, :edit_user_apps_2,
+                          :update_uapps_1, :update_uapps_2]
   before_action :check_login
 
   # GET /users
@@ -9,7 +10,7 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  # GET /users/1
+  # GET /users/
   # GET /users/1.json
   def show
   end
@@ -26,7 +27,8 @@ class UsersController < ApplicationController
   end
 
   def edit_apps
-    10.times { @user.apps.build }
+    n = 10 - @user.user_apps.length
+    n.times { @user.apps.build }
   end
 
   def edit_user_apps_1
@@ -56,33 +58,43 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    apps = user_params['apps_attributes']
-    if apps.nil? || apps.empty?
-      p @part_one, @part_two
-      if @part_one
-        p "hemlo 11231231e12"
-        redirect_to edit_user_apps_2_path
-      elsif @part_two
-        p "hemlo"
-        redirect_to user_apps_path
-      elsif @user.update_attributes(user_params)
-        redirect_to user_path, notice: "Updated user information."
-      else
-        render action: 'edit'
-      end
+    if @user.update_attributes(user_params)
+      redirect_to user_path, notice: "Updated user information."
     else
-      existing = []
-      apps.values.each do |app|
-        p app
-        if !app["name"].nil?
-          record = App.find_or_create_by(name: app["name"])
-          existing << record
-        end
+      render action: 'edit'
+    end
+  end
+
+  
+  def update_uapps
+    apps = user_params['apps_attributes']
+    existing = []
+    apps.values.each do |app|
+      if !app["name"].nil?
+        record = App.find_or_create_by(name: app["name"])
+        existing << record
       end
-      existing.each do |app|
-        UserApp.find_or_create_by(user_id: @user.id, app_id: app.id)
-      end
-      redirect_to edit_user_apps_1_path
+    end
+    existing.each do |app|
+      UserApp.find_or_create_by(user_id: @user.id, app_id: app.id)
+    end
+    p "working here bb"
+    redirect_to edit_user_apps_1_path
+  end
+
+  def update_uapps_1
+    if @user.update_attributes(user_params)
+      redirect_to edit_user_apps_2_path
+    else
+      redirect_to edit_user_apps_1
+    end
+  end
+
+  def update_uapps_2
+    if @user.update_attributes(user_params)
+      redirect_to @user
+    else
+      redirect_to edit_user_apps_2_path
     end
   end
 
