@@ -4,7 +4,7 @@ class AddStockUsersToSystem < ActiveRecord::Migration[5.2]
     bobama.username = 'bobama'
     bobama.password = "secret"
     bobama.password_confirmation = "secret"
-    bobama.role = "user"
+    bobama.role = "non-admin"
     bobama.save
     netflix = App.new
     netflix.name = 'netflix'
@@ -14,19 +14,19 @@ class AddStockUsersToSystem < ActiveRecord::Migration[5.2]
     mobama.username = 'mobama'
     mobama.password = "secret"
     mobama.password_confirmation = "secret"
-    mobama.role = "user"
+    mobama.role = "non-admin"
     mobama.save
     jayz = User.new
     jayz.username = 'jayz'
     jayz.password = "secret"
     jayz.password_confirmation = "secret"
-    jayz.role = "user"
+    jayz.role = "non-admin"
     jayz.save
     beyonce = User.new
     beyonce.username = 'beyonce'
     beyonce.password = "secret"
     beyonce.password_confirmation = "secret"
-    beyonce.role = "user"
+    beyonce.role = "non-admin"
     beyonce.save
   end
   def down

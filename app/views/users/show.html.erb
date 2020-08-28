@@ -7,7 +7,7 @@
 
 <p>
   <strong>Partner:</strong>
-  <%= @user.partner %>
+  <%= if @user.partner then @user.partner.username else link_to("Add Partner", edit_user_path(@user)) end %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

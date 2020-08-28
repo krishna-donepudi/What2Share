@@ -23,7 +23,17 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @partners = User.alphabetical.map{|x| [x.username, x.id] }
+    if current_user.role == "admin"
+      @partners = User.all.alphabetical.map{|x| [x.username, x.id] }
+    elsif current_user.partner.nil?
+      if current_user.possible_partners.empty?
+        @partners = User.singles.map{|x| [x.username, x.id] }
+      else
+        @partners = current_user.possible_partners.map{|x| [x.username, x.id] }
+      end
+    else
+      @partners = [current_user.partner].map{|x| [x.username, x.id] }
+    end
   end
 
   # POST /users
@@ -69,7 +79,6 @@ class UsersController < ApplicationController
     existing.each do |app|
       UserApp.find_or_create_by(user_id: @user.id, app_id: app.id)
     end
-    p "working here bb"
     redirect_to edit_user_apps_1_path
   end
 
@@ -108,7 +117,11 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      if @current_user
+        @user = @current_user
+      else
+        @user = User.find(params[:id])
+      end
     end
 
     # Only allow a list of trusted parameters through.

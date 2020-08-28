@@ -1,0 +1,5 @@
+<% if current_user.partner.done? %>
+    Preferences displayed here
+<% else %>
+    <h2>Your partner has not filled out their preferences yet</h2>
+<% end %>

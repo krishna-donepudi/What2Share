@@ -23,6 +23,24 @@ class User < ApplicationRecord
     find_by_username(username).try(:authenticate, password)
   end
 
+  def done?
+    if (self.apps.count > 0)
+      will_to_share_incomplete = self.user_apps.map{ |a| a.will_to_share }.include?(nil)
+      currently_sharing_incomplete = self.user_apps.map { |a| a.currently_sharing }.include?(nil)
+      if will_to_share_incomplete || currently_sharing_incomplete
+        return false
+      else
+        return true
+      end
+    else
+      return false
+    end
+  end
+
+  def possible_partners
+    User.all.select { |a| a.partner_id  == self.id }
+  end
+
   # callbacks
   # before_save :add_partner_if_not_added
 
