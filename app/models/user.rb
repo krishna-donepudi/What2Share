@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-  has_secure_password
+  
 
   # relations
   has_one :partner, :class_name => 'User', :foreign_key => 'partner_id'
@@ -11,8 +11,9 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :apps
   accepts_nested_attributes_for :user_apps
 
-  # validations
+  before_save { self.username = username.downcase }
   validates :username, presence: true, uniqueness: { case_sensitive: false }
+  has_secure_password
 
   scope :alphabetical, -> { order('username') }
   scope :singles, -> { where('partner_id IS NULL') }
