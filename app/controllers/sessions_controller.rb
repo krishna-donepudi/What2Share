@@ -3,8 +3,8 @@ class SessionsController < ApplicationController
   end
   
   def create
-    user = User.authenticate(params[:username], params[:password])
-    if user
+    user = User.find_by(username: params[:session][:username].downcase)
+    if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
       redirect_to edit_apps_path(user.id), notice: "Logged in!"
     else

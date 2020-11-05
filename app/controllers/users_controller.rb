@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_apps, 
-                          :update_uapps, :edit_user_apps_1, :edit_user_apps_2,
-                          :update_uapps_1, :update_uapps_2]
-  before_action :check_login
+  # before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_apps, 
+  #                         :update_uapps, :edit_user_apps_1, :edit_user_apps_2,
+  #                         :update_uapps_1, :update_uapps_2]
+  # before_action :check_login
 
   # GET /users
   # GET /users.json
@@ -13,21 +13,14 @@ class UsersController < ApplicationController
   # GET /users/
   # GET /users/1.json
   def show
-    @current_user = final_params
-    puts "Final Params are set to: #{@user.inspect}" # or logger debug if puts doesn't output anything to your log
-    logger.debug  "Final Params are set to: #{@user.inspect}"
-    @current_user 
-  end
-
-  def final_params
-    params.permit(apps_attributes: [:id, :name],
-    user_apps_attributes: [:id, :will_to_share, :currently_sharing])
+    @user = User.find(params[:id])
+    debugger
   end
 
   # GET /users/new
   def new
     @user = User.new
-    @partners = User.alphabetical.map{|x| [x.username, x.id] }
+    # @partners = User.alphabetical.map{|x| [x.username, x.id] }
   end
 
   # GET /users/1/edit
