@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     puts "Final Params are set to: #{@user.inspect}" # or logger debug if puts doesn't output anything to your log
     logger.debug  "Final Params are set to: #{@user.inspect}"
     @current_user 
+    debugger
   end
 
   def final_params
