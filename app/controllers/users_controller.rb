@@ -13,17 +13,9 @@ class UsersController < ApplicationController
   # GET /users/
   # GET /users/1.json
   def show
-    # @current_user = user_params
-    # puts "Final Params are set to: #{@user.inspect}" # or logger debug if puts doesn't output anything to your log
-    # logger.debug  "Final Params are set to: #{@user.inspect}"
-    # @current_user 
+    @user = User.find(params[:id])
     debugger
   end
-
-  # def final_params
-  #   params.permit(apps_attributes: [:id, :username],
-  #   user_apps_attributes: [:id, :will_to_share, :currently_sharing])
-  # end
 
   # GET /users/new
   def new
