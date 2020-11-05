@@ -10,5 +10,9 @@
   <%= if @user.partner then @user.partner.username else link_to("Add Partner", edit_user_path(@user)) end %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+ 
+
+<%= link_to "Show", show_result_path(current_user) %> 
+
+
 <%= link_to 'Back', users_path %>

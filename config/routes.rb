@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   get 'users/:id/edit_user_apps_2', to: 'users#edit_user_apps_2', as: :edit_user_apps_2
   post 'users/:id/edit_user_apps_2', to: 'users#update_uapps_2', as: :update_uapps_2
 
+  get 'users/:id/show_result', to: 'users#show_result', as: :show_result
+  post 'users/:id/show_result', to: 'users#update_show_result', as: :update_show_result
+
+
   resources :user_apps
   resources :apps
   resources :users
