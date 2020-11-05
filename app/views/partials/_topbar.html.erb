@@ -11,7 +11,7 @@
             <% unless current_user.nil? %>
                 <li><%= link_to 'My Account', user_path(current_user) %></li>
                 <li><%= link_to 'Logout', logout_path %></li>
-                <li><%= link_to 'My Forms', edit_apps_path(current_user.id) %></li>
+                <li><%= link_to 'My Forms', edit_apps_path(current_user) %></li>
             <% end %>
         </ul>
     </div>
