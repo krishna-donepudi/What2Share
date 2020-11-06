@@ -1,22 +1,22 @@
 <p id="notice"><%= notice %></p>
 <h5> Comparison of you and your partners choice </h5>
-<% if current_user.partner.done? %>
+<% if current_user.partner && current_user.partner.done? %>
     Preferences displayed here
     <p>
          <strong>Username:</strong>
         <%= current_user.username %>
     </p>
     <p>
-    <%= current_user.apps.values.each do |app|%>
-        app: <%= app %> <br/>
-        value: <%= @user[app] %>
+    <%= @current_user.partner.apps.each do |app|%>
+        app: <%= app.name %> <br/>
+        value: <%= @current_user.partner[app.name] %>
     <% end %>
     </p>
     
     <p>
-    <%= current_user.apps.each do |app| %>
-        app: <%= app %> <br/>
-        value: <%= @user[app] %>
+    <%= @current_user.apps.each do |app| %>
+        app: <%= app.name %> <br/>
+        value: <%= @current_user[app] %>
       <% end %>
     </p>
 
