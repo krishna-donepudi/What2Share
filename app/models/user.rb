@@ -11,6 +11,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :apps
   accepts_nested_attributes_for :user_apps
 
+  # check uniqueness of username
   before_save { self.username = username.downcase }
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   has_secure_password

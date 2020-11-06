@@ -20,16 +20,9 @@ pre {
 }
 
 a {
-  color: #000;
-
-  &:visited {
-    color: #666;
-  }
-
-  &:hover {
-    color: #fff;
-    background-color: #000;
-  }
+ &:hover{
+   opacity: 0.7;
+ }
 }
 
 th {
@@ -81,4 +74,9 @@ div {
 
 label {
   display: block;
+}
+
+img {
+  width: 30%;
+  height: auto;
 }

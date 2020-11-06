@@ -3,6 +3,7 @@
     <div class="card">    
       <div class="card-content">
         <span class="card-title"><%= type_of_form %></span>
+        <span class="card-example"><p><%= example %><p></span>
         <%= simple_form_for(object, :url => method_url, :method => :update) do |f| %>
           <%= f.error_notification %>
           <div class="row">
@@ -18,6 +19,7 @@
         </div>
       </div>
     <% end %>
+    <%= link_to 'Back', :back %>
   </div>
 </div>
-<%= link_to 'Back', :back %>
+
