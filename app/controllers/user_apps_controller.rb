@@ -1,5 +1,5 @@
 class UserAppsController < ApplicationController
-  before_action :set_user_app, only: [:show, :edit, :update, :destroy]
+  # before_action :set_user_app, only: [:show, :edit, :update, :destroy]
 
   # GET /user_apps
   # GET /user_apps.json

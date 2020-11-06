@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    # @partners = User.alphabetical.map{|x| [x.username, x.id] }
+    @partners = User.alphabetical.map{|x| [x.username, x.id] }
   end
 
   # GET /users/1/edit
