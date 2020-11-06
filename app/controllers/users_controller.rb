@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  # before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_apps, 
-  #                         :update_uapps, :edit_user_apps_1, :edit_user_apps_2,
-  #                         :update_uapps_1, :update_uapps_2]
-  # before_action :check_login
+   before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_apps, 
+                          :update_uapps, :edit_user_apps_1, :edit_user_apps_2,
+                          :update_uapps_1, :update_uapps_2]
+  before_action :check_login
 
   # GET /users
   # GET /users.json
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    debugger
+
   end
 
   # GET /users/new
