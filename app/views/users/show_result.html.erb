@@ -7,20 +7,51 @@
                 <strong>Username:</strong>
             <%= current_user.username %>
         </p>
+        <%# two tables one for current user(p1) and other for partner (p2)%>
+        <%# first iterate through will to share, then apps, then signal that they currently share it%>
         <p>
-        <%= @current_user.partner.apps.each do |app|%>
-            app: <%= app.name %> <br/>
-            value: <%= @current_user.partner[app.name] %>
+        <% @current_user.partner.user_apps.each do |user_app|%>
+            <% if user_app.will_to_share=='willing' %>
+            <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <h9> Willing to Share </h9>
+                    </td>
+                    <td>
+                        <%= App.find(user_app.app_id).name%> 
+                        <% if user_app.currently_sharing %>
+                           : Yes
+                        <% else %>
+                            : No
+                        <%end%><br/>
+
+                    </td>
+                    <td>
+                        <%= App.find(user_app.app_id).name%>
+                        <%=App.find(@current_user.id) %>
+                        <% if App.find(@current_user.id).currently_sharing %>
+                           : Yes
+                        <% else %>
+                            : No
+                        <%end%><br/>
+                    </td>
+                </tr>
+            </tbody>
+            </table> 
+                
+                Your partner: <%= App.find(user_app.app_id).name%> <br/>
+            <%end%>
         <% end %>
         </p>
 
         <p>
-        <%= @current_user.apps.each do |app| %>
-            app: <%= app.name %> <br/>
-            value: <%= @current_user[app] %>
+        <%= @current_user.user_apps.each do |user_app| %>
+            <% if user_app.will_to_share=='willing' %> 
+                You: <%= user_app.will_to_share%> <br/>
             <% end %>
-        </p>
-
+        <% end %>
+        </p> 
     <% else %>
         <h6>Your partner has not filled out their preferences yet</h6>
     <% end %>
