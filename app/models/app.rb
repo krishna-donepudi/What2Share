@@ -1,6 +1,6 @@
 class App < ApplicationRecord
   # relations
-  has_many :user_apps
+  has_many :user_apps, dependent: :destroy
   has_many :users, through: :user_apps
 
   # callbacks
@@ -10,11 +10,11 @@ class App < ApplicationRecord
 
   #scopes
   scope :alphabetical, -> { order('name') }
-
-  private
-  def format_name
-    name = self.name.downcase.chomp
-    self.name = name
-  end
+  before_save { self.name = name.downcase }
+  # private
+  # def format_name
+  #   name = self.name.chomp
+  #   self.name = name
+  # end
   
 end
