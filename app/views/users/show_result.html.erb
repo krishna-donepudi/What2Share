@@ -73,9 +73,9 @@
                         <% if puser_app.will_to_share=='likely' %>
                             <%= App.find(puser_app.app_id).name%>
                             <% if puser_app.currently_sharing %>
-                                : Yes</br>
+                                : Yes </br>
                             <% else %>
-                                : No </br>
+                            <%= image_tag("RedEllipse.png", :alt => "rss feed", height: '15', width: '15') %>
                             <%end%>    
                         <%end%>
                         <%end%>
