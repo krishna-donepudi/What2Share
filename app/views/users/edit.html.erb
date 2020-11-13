@@ -1,3 +1,16 @@
 <%= render partial: "partials/form_structure", locals: {object: @user, 
-                                                        type_of_form: "Edit User",
+                                                        type_of_form: "Add Partner",
                                                         fields: "edit_fields"} %>
+
+<script>
+function refresh() {
+    //considering there aren't any hashes in the urls already
+    if(!window.location.hash) {
+        //setting window location
+        window.location = window.location + '#loaded';
+        //using reload() method to reload web page
+        window.location.reload();
+    }
+}
+window.onload = refresh(); 
+</script>

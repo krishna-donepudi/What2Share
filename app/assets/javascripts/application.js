@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery_ujs
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
@@ -21,7 +22,6 @@
 
 // @import "materialize";
 // @import "https://fonts.googleapis.com/icon?family=Material+Icons";
-
 $(document).ready(function () {
     $('select').formSelect();
 });
