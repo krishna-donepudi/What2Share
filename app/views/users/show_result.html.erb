@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 <h5> Comparison of you and your partners choice </h5>
-<% if current_user.partner %> 
+
+<% if current_user.partner && current_user.partner.done?%> 
     <% if current_user.partner.done? %>
         Preferences displayed here
         <p>
@@ -10,37 +11,115 @@
         <%# two tables one for current user(p1) and other for partner (p2)%>
         <%# first iterate through will to share, then apps, then signal that they currently share it%>
         <p>
-        <% @current_user.partner.user_apps.each do |user_app|%>
-            <% if user_app.will_to_share=='willing' %>
+        <% ['willing','likely','unwilling'].each do |willingness|%>
+            <% if willingness=='willing' %>
             <table>
             <tbody>
                 <tr>
+    
                     <td>
                         <h9> Willing to Share </h9>
                     </td>
                     <td>
-                        <%= App.find(user_app.app_id).name%> 
-                        <% if user_app.currently_sharing %>
-                           : Yes
-                        <% else %>
-                            : No
-                        <%end%><br/>
-
+                        <% @current_user.user_apps.each do |cuser_app|%>
+                        <% if cuser_app.will_to_share=='willing' %>
+                            <%= App.find(cuser_app.app_id).name%>
+                            <% if cuser_app.currently_sharing %>
+                                : Yes <br/>
+                            <% else %>
+                                : No <br/>
+                            <%end%>    
+                        <%end%>
+                        <%end%>
                     </td>
                     <td>
-                        <%= App.find(user_app.app_id).name%>
-                        <%=App.find(@current_user.id) %>
-                        <% if App.find(@current_user.id).currently_sharing %>
-                           : Yes
-                        <% else %>
-                            : No
-                        <%end%><br/>
+                        <% @current_user.partner.user_apps.each do |puser_app|%>
+                        <% if puser_app.will_to_share=='willing' %>
+                            <%= App.find(puser_app.app_id).name%>
+                            <% if puser_app.currently_sharing %>
+                                : Yes <br/>
+                            <% else %>
+                                : No <br/>
+                            <%end%>    
+                        <%end%>
+                        <%end%>
                     </td>
+                    
                 </tr>
             </tbody>
-            </table> 
-                
-                Your partner: <%= App.find(user_app.app_id).name%> <br/>
+            </table>
+            <% elsif willingness=='likely' %>
+            <table>
+            <tbody>
+                <tr>
+    
+                    <td>
+                        <h9> Likely to Share   </h9>
+                    </td>
+                    <td>
+                        <% @current_user.user_apps.each do |cuser_app|%>
+                        <% if cuser_app.will_to_share=='likely' %>
+                            <%= App.find(cuser_app.app_id).name%>
+                            <% if cuser_app.currently_sharing %>
+                                : Yes <br/>
+                            <% else %>
+                                : No <br/>
+                            <%end%>    
+                        <%end%>
+                        <%end%>
+                    </td>
+                    <td>
+                        <% @current_user.partner.user_apps.each do |puser_app|%>
+                        <% if puser_app.will_to_share=='likely' %>
+                            <%= App.find(puser_app.app_id).name%>
+                            <% if puser_app.currently_sharing %>
+                                : Yes</br>
+                            <% else %>
+                                : No </br>
+                            <%end%>    
+                        <%end%>
+                        <%end%>
+                    </td>
+                    
+                </tr>
+            </tbody>
+            </table>
+            <% elsif willingness=='unwilling' %>
+            <table>
+            <tbody>
+                <tr>
+    
+                    <td>
+                        <h9> Unwilling to Share </h9>
+                    </td>
+                    <td>
+                        <% @current_user.user_apps.each do |cuser_app|%>
+                        <% if cuser_app.will_to_share=='unwilling' %>
+                            <%= App.find(cuser_app.app_id).name%>
+                            <% if cuser_app.currently_sharing %>
+                                : Yes <br/>
+                            <% else %>
+                                : No <br/>
+                            <%end%>    
+                        <%end%>
+                        <%end%>
+                    </td>
+                    <td>
+                        <% @current_user.partner.user_apps.each do |puser_app|%>
+                        <% if puser_app.will_to_share=='unwilling' %>
+                            <%= App.find(puser_app.app_id).name%>
+                            <% if puser_app.currently_sharing %>
+                                : Yes <br/>
+                            <% else %>
+                                : No <br/>
+                            <%end%>    
+                        <%end%>
+                        <%end%>
+                    </td>
+                    
+                </tr>
+            </tbody>
+            </table>
             <%end%>
         <% end %>
         </p>
@@ -50,6 +129,10 @@
             <% if user_app.will_to_share=='willing' %> 
                 You: <%= user_app.will_to_share%> <br/>
             <% end %>
+        <% end %>
+        </p> 
+        <p>
+        <%= @current_user.apps.each do |app| %>
         <% end %>
         </p> 
     <% else %>
