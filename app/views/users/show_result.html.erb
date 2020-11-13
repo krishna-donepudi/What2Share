@@ -6,10 +6,69 @@
          <strong>Username:</strong>
         <%= @current_user.username %>
     </p>
+    <table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>You</th>
+            <th></th>
+            <th></th>
+            <th>Partner</th>
+        <th colspan="7"></th>
+        </tr>
+    </thead>
+    <tbody>
+    <%= @current_user.each do |willingness| %>
+    <%= @current_user.user_apps.each do |app| %>
+        <tr>
+            <td>
+                willingness
+            
+            </td>
+            
+        //addd everything that matches with willingness
+        <tr>
+            <td>
+                <%=app.will_to_share%>
+                <%= app.app_id %>
+                <%=app.id%>
+            </td>
+            <td>
+                <%= @current_user.username %>
+            </td>
+            <td></td>
+            <td>
+            <% if @current_user.partner.app_ids.include?(app.app_id) %>
+                <%= @current_user.partner.username %>
+                <% end %>
+            </td>
+        
+        </tr>
+    <% end %>
+    <% end %>
+    </tbody>
+    </table>
+    
     <p>
+    <%= @current_user.partner.apps.ids%>
+    <%= [@current_user.partner.user_apps.ids]%>
+    <%= [@current_user.partner.user_apps]%>
+
+    
+    <br/>
     <%= @current_user.partner.apps.each do |app|%>
-        app: <%= app.name %> <br/>
-        value: <%= @current_user.partner[app.name] %>
+        <%= app.name %> <br/>
+    <% end %>
+    </p>
+    <p>
+    <%= @current_user.partner.user_apps.each do |user_app|%>
+        <%= user_app.will_to_share %> <br/>
+    <% end %>
+    </p>
+    <p>
+    <%= @current_user.partner.user_apps.each do |user_app|%>
+        app: <%= user_app.currently_sharing %> <br/>
+        value: <%= @current_user.partner[user_app] %>
     <% end %>
     </p>
     
@@ -19,13 +78,8 @@
         value: <%= @current_user[app] %>
       <% end %>
     </p>
-
- 
-   
-
-
 <%= link_to 'Back', user_path(current_user)  %>
-
 <% else %>
     <h2>Your partner has not filled out their preferences yet</h2>
+    <%= link_to 'Back', user_path(current_user)  %>
 <% end %>
