@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in?
 
   def check_login
-    redirect_to login_url, alert: "You need to log in to view this page." if current_user.nil?
+    unless logged_in?
+      flash[:error] = "Please log in to access your account"
+      redirect_to login_url # halts request cycle
+    end
+    # redirect_to login_url, alert: "You need to log in to view this page." if current_user.nil?
   end
 end

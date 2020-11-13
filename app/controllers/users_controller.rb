@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
-   before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_apps, 
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_apps, 
                           :update_uapps, :edit_user_apps_1, :edit_user_apps_2,
                           :update_uapps_1, :update_uapps_2]
-  before_action :check_login
-
+  before_action :check_login, except: [:new, :create]
   # GET /users
   # GET /users.json
   def index
@@ -14,13 +13,12 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-
   end
 
   # GET /users/new
   def new
     @user = User.new
-    # @partners = User.alphabetical.map{|x| [x.username, x.id] }
+    @partners = User.alphabetical.map{|x| [x.username, x.id] }
   end
 
   # GET /users/1/edit
@@ -48,6 +46,7 @@ class UsersController < ApplicationController
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
+        flash.now[:error] = "Username already exists"
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
