@@ -1,9 +1,9 @@
 <div class="row valign-wrapper" id="topbar">
     <div class="col s10">
-        <%= image_tag("logo.png", :height => '30%', :width => 'auto') %>
+        <br/><%= image_tag("logo.png", :height => '70', :width => 'auto') %>
     </div>
-    <div class="col s2">
-        <ul class='right'>
+    <div class="col s10 pull-s5">
+        <ul>
             <% unless current_user.nil? %>
                 <li><%= link_to 'Logout', logout_path %></li>              
                 <li><%= link_to 'My Forms', edit_apps_path(current_user) %></li>
