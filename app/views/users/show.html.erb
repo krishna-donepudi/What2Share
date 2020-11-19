@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<h5>Please add your partner to view a comparison of your account sharing attitudes</h5>
 
 <p>
   <strong>Username:</strong>
@@ -9,8 +9,6 @@
   <strong>Partner:</strong>
   <%= if @user.partner then @user.partner.username else link_to("Add Partner", edit_user_path(@user)) end %>
 </p>
-
- 
 
 <%= link_to "Show Result", show_result_path(@user) %> 
 

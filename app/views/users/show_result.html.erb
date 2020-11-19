@@ -30,9 +30,9 @@
                         <% if cuser_app.will_to_share=='willing' %>
                             <%= App.find(cuser_app.app_id).name%>
                             <% if cuser_app.currently_sharing %>
-                                <%= image_tag("yes.png", :height => '3%', :width => 'auto') %> <br/>
+                                <%= image_tag("yes.png", :height => '15', :width => '15') %> <br/>
                             <% else %>
-                                <%= image_tag("no.png", :height => '1%', :width => 'auto' ) %> <br/>
+                                <%= image_tag("no.png", :height => '15', :width => '15') %> <br/>
                             <%end%>    
                         <%end%>
                         <%end%>
@@ -42,9 +42,9 @@
                         <% if puser_app.will_to_share=='willing' %>
                             <%= App.find(puser_app.app_id).name%>
                             <% if puser_app.currently_sharing %>
-                                <%= image_tag("yes.png", :height => '3%', :width => 'auto') %> <br/>
+                                <%= image_tag("yes.png", :height => '15', :width => '15') %> <br/>
                             <% else %>
-                                <%= image_tag("no.png", :height => '1%', :width => 'auto' ) %> <br/>
+                                <%= image_tag("no.png", :height => '15', :width => '15') %> <br/>
                             <%end%>    
                         <%end%>
                         <%end%>
@@ -64,9 +64,9 @@
                         <% if cuser_app.will_to_share=='likely' %>
                             <%= App.find(cuser_app.app_id).name%>
                             <% if cuser_app.currently_sharing %>
-                                <%= image_tag("yes.png", :height => '3%', :width => 'auto') %> <br/>
+                                <%= image_tag("yes.png", :height => '15', :width => '15') %> <br/>
                             <% else %>
-                                <%= image_tag("no.png", :height => '1%', :width => 'auto' ) %> <br/>
+                                <%= image_tag("no.png", :height => '15', :width => '15') %> <br/>
                             <%end%>    
                         <%end%>
                         <%end%>
@@ -76,9 +76,9 @@
                         <% if puser_app.will_to_share=='likely' %>
                             <%= App.find(puser_app.app_id).name%>
                             <% if puser_app.currently_sharing %>
-                                <%= image_tag("yes.png", :height => '3%', :width => 'auto') %> </br>
+                                <%= image_tag("yes.png", :height => '15', :width => '15') %> </br>
                             <% else %>
-                                <%= image_tag("no.png", :height => '1%', :width => 'auto' ) %> <br/>
+                                <%= image_tag("no.png", :height => '15', :width => '15') %> <br/>
                             <%end%>    
                         <%end%>
                         <%end%>
@@ -98,9 +98,9 @@
                         <% if cuser_app.will_to_share=='unwilling' %>
                             <%= App.find(cuser_app.app_id).name%>
                             <% if cuser_app.currently_sharing %>
-                                <%= image_tag("yes.png", :height => '3%', :width => 'auto') %> <br/>
+                                <%= image_tag("yes.png", :height => '15', :width => '15') %> <br/>
                             <% else %>
-                                <%= image_tag("no.png", :height => '1%', :width => 'auto' ) %> <br/>
+                                <%= image_tag("no.png", :height => '15', :width => '15') %> <br/>
                             <%end%>    
                         <%end%>
                         <%end%>
@@ -110,9 +110,9 @@
                         <% if puser_app.will_to_share=='unwilling' %>
                             <%= App.find(puser_app.app_id).name%>
                             <% if puser_app.currently_sharing %>
-                                <%= image_tag("yes.png", :height => '3%', :width => 'auto') %> <br/>
+                                <%= image_tag("yes.png", :height => '15', :width => '15') %> <br/>
                             <% else %>
-                                <%= image_tag("no.png", :height => '1%', :width => 'auto' ) %> <br/>
+                                <%= image_tag("no.png", :height => '15', :width => '15') %> <br/>
                             <%end%>    
                         <%end%>
                         <%end%>

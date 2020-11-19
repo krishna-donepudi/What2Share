@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'home/index'
   get 'users/:id/edit_apps', to: 'users#edit_apps', as: :edit_apps
   post 'users/:id/edit_apps', to: 'users#update_uapps', as: :update_uapps
 
@@ -25,5 +26,5 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   get 'logout' => 'sessions#destroy', :as => :logout
   
-  root 'users#new' 
+  root 'home#index' 
 end

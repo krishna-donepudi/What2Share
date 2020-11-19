@@ -6,7 +6,7 @@
         <%= simple_form_for(object) do |f| %>
           <%= f.error_notification %>
           <div class="row">
-            <div class="form-inputs">
+            <div class="form-inputs" style="text-align: center;">
               <%= render partial: "#{fields}", locals: { f: f } %>
           </div>
         </div>
@@ -14,7 +14,7 @@
     </div>
       <div class="row">
         <div class="form-actions col s9">
-          <%= f.button :submit %>
+          <%= f.button :submit, 'Next' %>
         </div>
       </div>
     <% end %>

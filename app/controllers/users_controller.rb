@@ -57,7 +57,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     if @user.update_attributes(user_params)
-      redirect_to user_path, notice: "Updated user information."
+      redirect_to user_path
     else
       render action: 'edit'
     end
