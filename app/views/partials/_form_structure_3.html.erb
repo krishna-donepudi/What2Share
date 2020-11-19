@@ -3,7 +3,6 @@
     <div class="card">    
       <div class="card-content">
         <span class="card-title"><%= type_of_form %></span>
-        <span class="card-instruction"><b><%= instruction %></b></span>
         <%= simple_form_for(object, :url => method_url, :method => :update) do |f| %>
           <%= f.error_notification %>
           <div class="row">
@@ -11,12 +10,11 @@
               <%= render partial: "#{fields}", locals: { f: f } %>
             </div>
           </div>
-          <span class="card-example"><%= image_tag("apps.png", :height => 'auto', :width => '100%') %></span>
         </div>
       </div>
       <div class="row">
         <div class="form-actions col s9">
-          </br><%= f.button :submit, 'Next' %>
+          <%= f.button :submit, 'Next' %>
         </div>
       </div>
     <% end %>
