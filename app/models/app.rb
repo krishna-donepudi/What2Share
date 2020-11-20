@@ -10,6 +10,7 @@ class App < ApplicationRecord
 
   #scopes
   scope :alphabetical, -> { order('name') }
+
   private
   def format_name
     name = self.name.downcase.chomp

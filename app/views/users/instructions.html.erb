@@ -1,0 +1,17 @@
+<div class = "reminder">
+    <div class = "alert-image">
+    <%=image_tag("working.png", :height => '140', :width => 'auto',:class => 'working-pic')%>
+    </div>
+    <div class = "header">
+        <h3> Welcome to <b>What2Share</b></h3>
+    </div>
+    <div class = "blurb">
+        <h5>You and your partner will be able to understand each other’s 
+        perceptions of account sharing based on each of your 10 most used accounts. </h5>
+        <h6>Reminder: <b>Your partner</b> will be able to see the information that you are about to input</h6>
+        <div class = "next-btn">
+        <%= link_to "Got it", edit_apps_path(@current_user), class: "btn btn-next" %>
+        <%= link_to 'Go back', logout_path, class: "btn btn-back" %>
+        </div>
+    </div>
+</div>

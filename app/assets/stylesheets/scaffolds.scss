@@ -105,3 +105,14 @@ label {
 .card-instruction {
   line-height: 300% !important;
 }
+.top_bar_pic{
+  float: block;
+  vertical-align: left; 
+  margin-left: -15px;
+}
+.working-pic{
+  width: 200px;
+  height: auto;
+  position: absolute;
+  border-radius: 40px;
+}
