@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get 'users/:id/show_result', to: 'users#show_result', as: :show_result
   post 'users/:id/show_result', to: 'users#update_show_result', as: :update_show_result
 
+  get 'users/:id/instructions', to: 'users#instructions', as: :instructions
+  post 'users/:id/instructions', to: 'users#update_instructions', as: :update_instructions
 
   resources :user_apps
   resources :apps
