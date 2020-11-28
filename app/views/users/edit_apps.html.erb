@@ -4,3 +4,16 @@
     type_of_form: "List 10 accounts that you use most frequently",
     instruction: "Please enter lowercase only.",
     fields: "apps_fields"} %>
+
+<script>
+function refresh() {
+    //considering there aren't any hashes in the urls already
+    if(!window.location.hash) {
+        //setting window location
+        window.location = window.location + '#loaded';
+        //using reload() method to reload web page
+        window.location.reload();
+    }
+}
+window.onload = refresh(); 
+</script>

@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 <h5> Comparison of you and your partners choice </h5>
 
-<% if current_user.partner && current_user.partner.done?%> 
+<% if current_user.partner%> 
     <% if current_user.partner.done? %>
         <%# two tables one for current user(p1) and other for partner (p2)%>
         <%# first iterate through will to share, then apps, then signal that they currently share it%>
         <p>
-        <% ['willing','likely','unwilling'].each do |willingness|%>
+        <% ['willing','neutral','unwilling', 'notsure'].each do |willingness|%>
             <% if willingness=='willing' %>
             <table>
                 <colgroup>
@@ -52,16 +52,16 @@
                     
                 </tr>
             </tbody>
-            <% elsif willingness=='likely' %>
+            <% elsif willingness=='neutral' %>
             <tbody>
                 <tr>
     
                     <td>
-                        <h6> Likely to Share   </h6>
+                        <h6> Netural </h6>
                     </td>
                     <td>
                         <% @current_user.user_apps.each do |cuser_app|%>
-                        <% if cuser_app.will_to_share=='likely' %>
+                        <% if cuser_app.will_to_share=='neutral' %>
                             <%= App.find(cuser_app.app_id).name%>
                             <% if cuser_app.currently_sharing %>
                                 <%= image_tag("yes.png", :height => '15', :width => '15') %> <br/>
@@ -73,7 +73,7 @@
                     </td>
                     <td>
                         <% @current_user.partner.user_apps.each do |puser_app|%>
-                        <% if puser_app.will_to_share=='likely' %>
+                        <% if puser_app.will_to_share=='neutral' %>
                             <%= App.find(puser_app.app_id).name%>
                             <% if puser_app.currently_sharing %>
                                 <%= image_tag("yes.png", :height => '15', :width => '15') %> </br>
@@ -119,9 +119,41 @@
                     </td>       
                 </tr>
             </tbody>
+            <% elsif willingness=='notsure' %>
+            <tbody>
+                <tr>
+    
+                    <td>
+                        <h6> Not Sure </h6>
+                    </td>
+                    <td>
+                        <% @current_user.user_apps.each do |cuser_app|%>
+                        <% if cuser_app.will_to_share=='notsure' %>
+                            <%= App.find(cuser_app.app_id).name%>
+                            <% if cuser_app.currently_sharing %>
+                                <%= image_tag("yes.png", :height => '15', :width => '15') %> <br/>
+                            <% else %>
+                                <%= image_tag("no.png", :height => '15', :width => '15') %> <br/>
+                            <%end%>    
+                        <%end%>
+                        <%end%>
+                    </td>
+                    <td>
+                        <% @current_user.partner.user_apps.each do |puser_app|%>
+                        <% if puser_app.will_to_share=='notsure' %>
+                            <%= App.find(puser_app.app_id).name%>
+                            <% if puser_app.currently_sharing %>
+                                <%= image_tag("yes.png", :height => '15', :width => '15') %> <br/>
+                            <% else %>
+                                <%= image_tag("no.png", :height => '15', :width => '15') %> <br/>
+                            <%end%>    
+                        <%end%>
+                        <%end%>
+                    </td>       
+                </tr>
+            </tbody>
             </table>
             <%end%>
-            
         <% end %>
         <br/>
         <%= image_tag("yes.png", :height => '15', :width => '15') %>: currently sharing <br/>
